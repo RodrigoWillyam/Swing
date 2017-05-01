@@ -1,16 +1,16 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
 
 public class CadastroDeAlunos extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	//private JLabel labelCodigo, labelNome, labelEmail;
+	//private JButton btnAbrir, btnGravar, btnLimpar;
+	//private JTextField tfCodigo, tfNome, tfEmail;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -41,27 +41,42 @@ public class CadastroDeAlunos extends JFrame {
 	private JLabel lblQuando;
 	private JTextField textField_10;
 	private JLabel lblDadosPessoais;
+	private JButton btnLimpar;
+	private JButton btnAbrir;
+	private JButton btnGravar;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroDeAlunos frame = new CadastroDeAlunos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+	public static void main(String args[]) {
+		// Instâcia do Objeto da Class JFrame.
+		JFrame frame = new CadastroDeAlunos();
+
+		// Permite Fechar a JFrame.
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Define JFrame Visivel.
+		frame.setVisible(true);
+	}
+
+	// Construtor da Class.
+	public CadastroDeAlunos() {
+		// Chamada dos Métodos.
+		inicializarComponentes();
+		definirEventos();
 	}
 
 	/**
-	 * Create the frame.
+	 * Método inicializarComponentes, contem todos os componetes da JFrame.
 	 */
-	public CadastroDeAlunos() {
+	public void inicializarComponentes() {
+		// Define Título da JFrame.
+		//setTitle("Cadastro usando Arquivo de Texto");
+
+		//
+		//setBounds(250, 50, 350, 160);
+
+		//
+		//setBackground(new Color(150, 150, 150));
+		setTitle("Cadastro De Alunos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
@@ -78,12 +93,12 @@ public class CadastroDeAlunos extends JFrame {
 		contentPane.add(lblCpf);
 		
 		textField = new JTextField();
-		textField.setBounds(70, 72, 350, 20);
+		textField.setBounds(70, 41, 350, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(70, 41, 350, 20);
+		textField_1.setBounds(70, 72, 350, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -92,7 +107,7 @@ public class CadastroDeAlunos extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JComboBox <String> comboBox = new JComboBox();
-		comboBox.setBounds(70, 115, 80, 20);
+		comboBox.setBounds(70, 115, 86, 20);
 		contentPane.add(comboBox);
 		comboBox.addItem("Masculino");
 		comboBox.addItem("Feminino");
@@ -100,11 +115,11 @@ public class CadastroDeAlunos extends JFrame {
 		//System.out.println(comboBox.getSelectedIndex());
 		
 		lblDataDeNascimento = new JLabel("DATA DE NASCIMENTO :");
-		lblDataDeNascimento.setBounds(158, 115, 130, 20);
+		lblDataDeNascimento.setBounds(158, 115, 145, 20);
 		contentPane.add(lblDataDeNascimento);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(295, 115, 125, 20);
+		textField_2.setBounds(305, 115, 115, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -148,11 +163,11 @@ public class CadastroDeAlunos extends JFrame {
 		textField_5.setColumns(10);
 		
 		lblTelefone = new JLabel("TELEFONE :");
-		lblTelefone.setBounds(10, 250, 60, 20);
+		lblTelefone.setBounds(10, 250, 70, 20);
 		contentPane.add(lblTelefone);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(70, 250, 135, 20);
+		textField_6.setBounds(80, 250, 125, 20);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
 		
@@ -170,7 +185,7 @@ public class CadastroDeAlunos extends JFrame {
 		textField_7.setColumns(10);
 		
 		lblTurma = new JLabel("TURMA :");
-		lblTurma.setBounds(227, 326, 46, 20);
+		lblTurma.setBounds(215, 326, 58, 20);
 		contentPane.add(lblTurma);
 		
 		comboBox_2 = new JComboBox();
@@ -191,11 +206,11 @@ public class CadastroDeAlunos extends JFrame {
 		comboBox_3.addItem("não");
 		
 		lblQuantos = new JLabel("QUANTOS :");
-		lblQuantos.setBounds(215, 369, 68, 20);
+		lblQuantos.setBounds(215, 369, 80, 20);
 		contentPane.add(lblQuantos);
 		
 		textField_8 = new JTextField();
-		textField_8.setBounds(275, 369, 145, 20);
+		textField_8.setBounds(305, 369, 115, 20);
 		contentPane.add(textField_8);
 		textField_8.setColumns(10);
 		
@@ -220,5 +235,213 @@ public class CadastroDeAlunos extends JFrame {
 		lblDadosPessoais = new JLabel("DADOS PESSOAIS :");
 		lblDadosPessoais.setBounds(158, 10, 115, 20);
 		contentPane.add(lblDadosPessoais);
+		
+		btnAbrir = new JButton("ABRIR");
+		btnAbrir.setBounds(10, 431, 89, 23);
+		contentPane.add(btnAbrir);
+		
+		btnGravar = new JButton("GRAVAR");
+		btnGravar.setBounds(158, 431, 89, 23);
+		contentPane.add(btnGravar);
+		
+		btnLimpar = new JButton("LIMPAR");
+		btnLimpar.setBounds(310, 431, 89, 23);
+		contentPane.add(btnLimpar);
+
+		// Instância dos objetos JLabel, JButton, JTextField.
+		//labelCodigo = new JLabel("Código");
+		//labelNome = new JLabel("Nome");
+		//labelEmail = new JLabel("Email");
+
+		//btnAbrir = new JButton("Abrir");
+		//btnGravar = new JButton("Gravar");
+		//btnLimpar = new JButton("Limpar");
+
+		//tfCodigo = new JTextField();
+		//tfEmail = new JTextField();
+		//tfNome = new JTextField();
+
+		//
+		//setLayout(null);
+
+		// Coordenadas das posições dos Componentes JLabel, JButton, JTextField.
+		//labelCodigo.setBounds(10, 15, 50, 20);
+		//labelNome.setBounds(10, 40, 45, 20);
+		//labelEmail.setBounds(10, 65, 45, 20);
+
+		//btnAbrir.setBounds(70, 100, 75, 20);
+		//btnGravar.setBounds(155, 100, 75, 20);
+		//btnLimpar.setBounds(240, 100, 75, 20);
+
+		//tfCodigo.setBounds(70, 15, 55, 20);
+		//tfNome.setBounds(70, 40, 255, 20);
+		//tfEmail.setBounds(70, 65, 255, 20);
+
+		// Adiciona Componentes JLabel, JButton, JTextField, a JFrame.
+		//add(labelCodigo);
+		//add(labelNome);
+		//add(labelEmail);
+
+		//add(btnAbrir);
+		//add(btnGravar);
+		//add(btnLimpar);
+
+		//add(tfCodigo);
+		//add(tfEmail);
+		//add(tfNome);
+	}
+
+	/**
+	 * Define Eventos que será executado por cada componete JButton.
+	 */
+	public void definirEventos() {
+		// Evento do Botão Limpar.
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Limpa todos os Campos.
+				//tfCodigo.setText("");
+				//tfNome.setText("");
+				//tfEmail.setText("");
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+				textField_6.setText("");
+				textField_7.setText("");
+				textField_8.setText("");
+				textField_9.setText("");
+				textField_10.setText("");
+			}
+		});
+
+		// Evento do Botão Gravar.
+		btnGravar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Condição, verifica se os campo estão vazios.
+				if (textField.getText().equals("")) {
+					// Exibe caixa de Dialogo.
+					JOptionPane.showMessageDialog(null,
+							"O Nome não pode está vazio!");
+
+					// Fornece o foco ao cursor da caixa de Texto
+					// correspondente.
+					textField.requestFocus();
+
+				} else if (textField_1.getText().equals("")) {
+					// Exibe caixa de Dialogo.
+					JOptionPane.showMessageDialog(null,
+							"O Cpf não pode está vazio!");
+
+					// Fornece o foco ao cursor da caixa de Texto
+					// correspondente.
+					textField_1.requestFocus();
+
+				} else if (textField_6.getText().equals("")) {
+					// Exibe caixa de Dialogo.
+					JOptionPane.showMessageDialog(null, 
+							"O Telefone não pode está vazio!");
+
+					// Fornece o foco ao cursor da caixa de Texto
+					// correspondente.
+					textField_6.requestFocus();
+
+				} else {
+					// Tratamento de Erros.
+					try {
+						// Instância de um Objeto da Class Java(PrintWriter
+						// "para Gravação do Arquivo").
+						PrintWriter out = new PrintWriter(textField.getText()
+								+ ".txt");// Define o extensão do arquivo que
+											// deseja criar.
+
+						// Captura o Texto dos JTextField.
+						//out.println(tfCodigo.getText());
+						//out.println(tfNome.getText());
+						//out.println(tfEmail.getText());
+						out.println(textField.getText());
+						out.println(textField_1.getText());
+						out.println(textField_2.getText());
+						out.println(textField_3.getText());
+						out.println(textField_4.getText());
+						out.println(textField_5.getText());
+						out.println(textField_6.getText());
+						out.println(textField_7.getText());
+						out.println(textField_8.getText());
+						out.println(textField_9.getText());
+						out.println(textField_10.getText());
+						
+						//testar limpar dados
+						//tfCodigo.setText("");
+						//tfNome.setText("");
+						//tfEmail.setText("");
+						textField.setText("");
+						textField_1.setText("");
+						textField_2.setText("");
+						textField_3.setText("");
+						textField_4.setText("");
+						textField_5.setText("");
+						textField_6.setText("");
+						textField_7.setText("");
+						textField_8.setText("");
+						textField_9.setText("");
+						textField_10.setText("");
+
+						// Fecha Conexão.
+						out.close();
+
+						// Exibe caixa de Dialogo.
+						JOptionPane.showMessageDialog(null,
+								"Arquivo Gravado com Sucesso!");
+
+					} catch (IOException Erro) {
+						JOptionPane.showMessageDialog(null,
+								"Erro ao Gravar no Arquivo" + Erro);
+					}
+				}
+			}
+		});
+
+		// Evento do Botão Abrir.
+		btnAbrir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Tratamento de Erros
+				try {
+					// Solicita ao usuário que informe qual o arquivo deseja
+					// abrir.
+					String arquivo = JOptionPane.showInputDialog(null,
+							"Infome o Nome do aluno a exibir:");
+
+					// Instância de um Objeto da Class java(BufferedReader
+					// "Para Leitura do Arquivo"), que Instância um Objeto da
+					// Class java(FileReader) referenciando o arquivo a ser
+					// aberto.
+					BufferedReader br = new BufferedReader(new FileReader(
+							arquivo + ".txt"));
+
+					// Ler o conteúdo do arquivo e exibe nos JTextField.
+					//tfCodigo.setText(br.readLine());
+					//tfNome.setText(br.readLine());
+					//tfEmail.setText(br.readLine());
+					textField.setText (br.readLine());
+					textField_1.setText (br.readLine());
+					textField_2.setText (br.readLine());
+					textField_3.setText (br.readLine());
+					textField_4.setText (br.readLine());
+					textField_5.setText (br.readLine());
+					textField_6.setText (br.readLine());
+					textField_7.setText (br.readLine());
+					textField_8.setText (br.readLine());
+					textField_9.setText (br.readLine());
+					textField_10.setText (br.readLine());
+
+				} catch (IOException Erro) {
+					JOptionPane.showMessageDialog(null,	Erro);
+
+				}
+			}
+		});
+
 	}
 }
